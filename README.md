@@ -14,7 +14,7 @@ An algorithm adventure to save Christmas!
 
 [Day 2 Solution](https://github.com/JoshuaDueck/advent-of-code-2020/tree/main/day2)
 
-*Part 1: O(mn) - m = number of letters in a password*
+*Part 1: O(mn), m = number of letters in a password*
 
 *Part 2: O(n)*
 - Part 1 involved checking the valid password by counting the number of times the target letter appears in the string, then checking if it falls in the bounds.
