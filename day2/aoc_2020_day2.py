@@ -7,10 +7,7 @@ def valid_pass_p1(password, letter, mincount, maxcount):
     for target_letter in password:
         if target_letter == letter:
             letter_count += 1
-    if letter_count >= mincount and letter_count <= maxcount:
-        return True
-    else:
-        return False
+    return letter_count >= mincount and letter_count <= maxcount
 
 ### PART 2 ###
 def valid_pass_p2(password, letter, pos1, pos2):
