@@ -1,5 +1,6 @@
-f = open("aoc_2020_day4_input.txt", "r")
 import re
+
+f = open("aoc_2020_day4_input.txt", "r")
 
 passports = [[]]
 curr_passport = 0
