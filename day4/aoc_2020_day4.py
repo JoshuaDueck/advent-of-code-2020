@@ -6,9 +6,8 @@ for line in f:
     if line == "\n":
         curr_passport += 1
         passports.append([])
-    passports[curr_passport].append(line)
-
-print(f"There are {curr_passport} passports.")
+    else:
+        passports[curr_passport].append(line)
 
 def valid_passport(passport):
     joined_passport = ""
@@ -33,7 +32,7 @@ def valid_passport(passport):
     flags["ecl"] = "ecl" in joined_passport
     flags["pid"] = "pid" in joined_passport
 
-    print(f"PASSPORT STRING: {joined_passport}\nFLAGS: {flags}")
+    split_into_key_values(joined_passport)
 
     for flag in flags:
         if not flags[flag]:
@@ -58,7 +57,34 @@ def valid_passport(passport):
     return True
 
 
+def split_into_key_values(passport_string):
+    index = 0
+    next_break = 0
+    print(f"=== REPORT FOR\n{passport_string}\n===")
+    while index > -1 and next_break > -1:
+        index = passport_string.find(':')
+        next_space = passport_string.find(' ')
+        next_newline = passport_string.find('\n')
+
+        if next_newline != -1 and next_space != -1:
+            next_break = min(next_space, next_newline)
+        elif next_newline == -1 and next_space != -1:
+            next_break = next_space
+        elif next_space == -1 and next_newline != -1:
+            next_break = next_newline
+        else:
+            # they're both not found
+            next_break == -1
+
+        key = passport_string[index-3:index]
+        value = passport_string[index+1:next_break]
+
+        passport_string = passport_string[next_break+1:]
+        print(f"{key} $ {value}, ")
+    print(f"=== END REPORT ===")
+
 valid_count = 0
+
 for passport in passports:
     if valid_passport(passport):
         valid_count += 1
