@@ -1,0 +1,57 @@
+CHILDREN - every time we add a child, add that child's children, then check it's parents, and add the children to those parents.
+    light red
+        - bright white
+        - muted yellow
+        - shiny gold
+        - faded blue
+        - dark olive
+        - vibrant plum
+        - faded blue
+        - dotted black
+    dark orange
+        - bright white
+        - muted yellow
+        - shiny gold
+        - faded blue
+        - dark olive
+        - vibrant plum
+        - faded blue
+        - dotted black
+    bright white
+        - shiny gold
+        - dark olive
+        - vibrant plum
+        - faded blue
+        - dotted black
+    muted yellow
+        - shiny gold
+        - faded blue
+        - dark olive
+        - vibrant plum
+        - faded blue
+        - dotted black
+    shiny gold
+        - dark olive
+        - vibrant plum
+        - faded blue
+        - dotted black
+    dark olive
+        - faded blue
+        - dotted black
+
+
+PARENTS
+    bright white
+        - light red
+        - dark orange
+    muted yellow
+        - light red
+        - dark orange
+    dark orange
+
+    light red
+
+    shiny gold
+        - bright white
+        - light red
+        - dark orange
