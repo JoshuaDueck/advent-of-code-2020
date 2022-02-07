@@ -18,7 +18,7 @@ def main():
             bag_contained_by[contained_bag[1]].append(bag_name)
     
     f.close()
-    print(len(get_possible_containers("shiny gold", bag_contents=bag_contents, bag_contained_by=bag_contained_by))) # 296 -- correct
+    print(get_num_contained("shiny gold", bag_contents))
 
 # a function that pretty-prints a dictionary of lists
 def print_dict(dictionary: dict):
@@ -54,24 +54,21 @@ def get_contained_bags(line: str):
         
         return bag_array
 
-# a wrapper functin for get_possible_containers
-def get_possible_containers(bag_name, bag_contents, bag_contained_by):
-    return __get_possible_containers(bag_name, bag_contained_by[bag_name], bag_contents, bag_contained_by)
 
-def __get_possible_containers(bag_name: str, containing_bags: list, bag_contents: dict, bag_contained_by: dict):
-    bags_containing_target = bag_contained_by[bag_name]
+def get_num_contained(bag_name: str, bag_contents: dict):
+    return __get_num_contained(bag_name, bag_contents[bag_name], bag_contents)
 
-    if containing_bags == []:
-        return bags_containing_target
+def __get_num_contained(bag_name: str, contained_bags: list, bag_contents: dict):
+    bags_in_target = bag_contents[bag_name]
+
+    if contained_bags == []:
+        return bags_in_target
     else:
-        for bag in bags_containing_target:
-            possible_containers = __get_possible_containers(bag, bags_containing_target, bag_contents, bag_contained_by)
+        print(bag_contents['clear blue'])
+        for bag in bag_contents[bag_name]:
+            possible_bags = __get_num_contained(bag[1], bags_in_target, bag_contents)
 
-            for possible_container in possible_containers:
-                if possible_container not in bags_containing_target:
-                    bags_containing_target.append(possible_container)
-
-    return bags_containing_target
+            bags_in_target.append(possible_bags)
 
 if __name__ == "__main__":
     main()

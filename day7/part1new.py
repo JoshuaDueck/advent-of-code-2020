@@ -18,7 +18,7 @@ def main():
             bag_contained_by[contained_bag[1]].append(bag_name)
     
     f.close()
-    print(len(get_possible_containers("shiny gold", bag_contents=bag_contents, bag_contained_by=bag_contained_by))) # 296 -- correct
+    print(len(get_possible_containers("shiny gold", bag_contained_by=bag_contained_by))) # 296 -- correct
 
 # a function that pretty-prints a dictionary of lists
 def print_dict(dictionary: dict):
@@ -51,21 +51,21 @@ def get_contained_bags(line: str):
                 bag_array.append((int(bag_split[0]), " ".join(bag_split[1:])))
             except:
                 print("Error: Bad integer format!")
-        
+
         return bag_array
 
 # a wrapper functin for get_possible_containers
-def get_possible_containers(bag_name, bag_contents, bag_contained_by):
-    return __get_possible_containers(bag_name, bag_contained_by[bag_name], bag_contents, bag_contained_by)
+def get_possible_containers(bag_name, bag_contained_by):
+    return __get_possible_containers(bag_name, bag_contained_by[bag_name], bag_contained_by)
 
-def __get_possible_containers(bag_name: str, containing_bags: list, bag_contents: dict, bag_contained_by: dict):
+def __get_possible_containers(bag_name: str, containing_bags: list, bag_contained_by: dict):
     bags_containing_target = bag_contained_by[bag_name]
 
     if containing_bags == []:
         return bags_containing_target
     else:
         for bag in bags_containing_target:
-            possible_containers = __get_possible_containers(bag, bags_containing_target, bag_contents, bag_contained_by)
+            possible_containers = __get_possible_containers(bag, bags_containing_target, bag_contained_by)
 
             for possible_container in possible_containers:
                 if possible_container not in bags_containing_target:
